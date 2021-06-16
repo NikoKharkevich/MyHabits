@@ -68,6 +68,7 @@
 		C057409F267A4A060063B25E /* MyHabits */ = {
 			isa = PBXGroup;
 			children = (
+				C05740AB267A4A080063B25E /* LaunchScreen.storyboard */,
 				C05740A6267A4A060063B25E /* Main.storyboard */,
 				C05740BF267A5F760063B25E /* InfoVC */,
 				C05740BE267A5F570063B25E /* HabitsVC */,
@@ -81,7 +82,6 @@
 		C05740BC267A5EAE0063B25E /* system */ = {
 			isa = PBXGroup;
 			children = (
-				C05740AB267A4A080063B25E /* LaunchScreen.storyboard */,
 				C05740A2267A4A060063B25E /* SceneDelegate.swift */,
 				C05740A0267A4A060063B25E /* AppDelegate.swift */,
 			);
