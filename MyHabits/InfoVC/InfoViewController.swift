@@ -14,7 +14,16 @@ class InfoViewController: UIViewController {
     
     private let textLabel: UILabel = {
         let label = UILabel()
-        label.text = infoText
+        label.text = infoViewTextLabel
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.toAutoLayout()
+        return label
+    }()
+    
+    private let textDescription: UILabel = {
+        let label = UILabel()
+        label.text = infoViewTextDescription
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.numberOfLines = 0
         label.toAutoLayout()
         return label
@@ -25,12 +34,10 @@ class InfoViewController: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubview(textLabel)
+        containerView.addSubviews(textLabel, textDescription)
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
-        scrollView.backgroundColor = .red
-        containerView.backgroundColor = .lightGray
         
         let constraints = [
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -47,23 +54,13 @@ class InfoViewController: UIViewController {
             textLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 22),
             textLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             textLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            textLabel.heightAnchor.constraint(equalTo: containerView.heightAnchor),
-            textLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            
+            textDescription.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 16),
+            textDescription.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            textDescription.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            textDescription.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ]
-        
         NSLayoutConstraint.activate(constraints)
-
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
