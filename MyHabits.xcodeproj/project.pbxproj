@@ -93,10 +93,10 @@
 		C05740BD267A5F090063B25E /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				C0FCA10226807050003D576F /* Assets.xcassets */,
 				C05740B4267A4B880063B25E /* HabitsStore.swift */,
 				C05740C0267A60360063B25E /* toAutolayout().swift */,
 				C05740C2267A62AD0063B25E /* addSubviews().swift */,
+				C0FCA10226807050003D576F /* Assets.xcassets */,
 			);
 			path = Store;
 			sourceTree = "<group>";

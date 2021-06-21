@@ -11,19 +11,21 @@ class HabitsViewController: UIViewController {
     }
     
     private func setupNavigationItems() {
-        navigationItem.title = "Сегодня"
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "myLightGray")
+        navigationController?.navigationBar.tintColor = UIColor(named: "myPurple")
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isHidden = false
+        
+        navigationItem.title = "Сегодня"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        navigationController?.navigationBar.backgroundColor = .lightGray
-        navigationItem.rightBarButtonItem?.tintColor = .purple
     }
     
     @objc func addTapped() {
-        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let controller = sb.instantiateViewController(identifier: "NewHabit") as! AddNewHabbitViewController
         controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+//        self.present(controller, animated: true, completion: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -28,7 +28,7 @@
         <!--Habits View Controller-->
         <scene sceneID="Z23-i6-zex">
             <objects>
-                <viewController id="hRP-Wg-0ty" customClass="HabitsViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HabitsVC" id="hRP-Wg-0ty" customClass="HabitsViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0q0-DS-nEg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
