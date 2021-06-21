@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -40,10 +41,10 @@
             </objects>
             <point key="canvasLocation" x="2394.202898550725" y="-368.30357142857139"/>
         </scene>
-        <!--Habit View Controller-->
+        <!--Add New Habbit View Controller-->
         <scene sceneID="6h5-93-WH8">
             <objects>
-                <viewController storyboardIdentifier="HabitVC" id="cIB-Ka-9an" customClass="HabitViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewHabit" id="cIB-Ka-9an" customClass="AddNewHabbitViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YMp-c6-hPO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +64,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" red="0.63137254899999995" green="0.086274509799999996" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" name="myPurple"/>
                     </tabBar>
                     <connections>
                         <segue destination="clg-sX-fLz" kind="relationship" relationship="viewControllers" id="Qqn-n7-MFW"/>
@@ -97,7 +98,7 @@
         <scene sceneID="6vO-He-Ilh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="clg-sX-fLz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Привычки" image="list.triangle" catalog="system" selectedImage="rectangle.grid.1x2.fill" id="3CY-xp-npJ"/>
+                    <tabBarItem key="tabBarItem" title="Привычки" image="rectangle.grid.1x2.fill" catalog="system" selectedImage="rectangle.grid.1x2.fill" id="3CY-xp-npJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KrF-rh-9it">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -118,8 +119,10 @@
     </scenes>
     <resources>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="list.triangle" catalog="system" width="128" height="91"/>
         <image name="rectangle.grid.1x2.fill" catalog="system" width="128" height="101"/>
+        <namedColor name="myPurple">
+            <color red="0.63137254901960782" green="0.086274509803921567" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

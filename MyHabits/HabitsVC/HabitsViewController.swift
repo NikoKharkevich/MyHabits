@@ -5,7 +5,7 @@ class HabitsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(named: "myLightGray")
         setupNavigationItems()
 
     }
@@ -22,9 +22,8 @@ class HabitsViewController: UIViewController {
     @objc func addTapped() {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let controller = sb.instantiateViewController(identifier: "HabitVC") as! HabitViewController
+        let controller = sb.instantiateViewController(identifier: "NewHabit") as! AddNewHabbitViewController
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true, completion: nil)
-        
     }
 }

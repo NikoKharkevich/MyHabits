@@ -12,15 +12,21 @@ class AddNewHabbitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
+        view.backgroundColor = .lightGray
 
     }
     
     private func setupNavigationItems() {
-        navigationItem.title = "Сегодня"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Создать"
+        navigationItem.leftBarButtonItem?.title = "Отменить"
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.backgroundColor = .lightGray
-        navigationItem.rightBarButtonItem?.tintColor = .purple
+        navigationController?.navigationBar.backgroundColor = .yellow
+//        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(saveHabit))
+    }
+    
+    @objc func saveHabit() {
+ 
     }
 
 }
