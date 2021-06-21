@@ -6,15 +6,48 @@ class AddNewHabbitViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let containerView = UIView()
     
-    private let habitName: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Habit Name"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.text = "НАЗВАНИЕ"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         label.toAutoLayout()
         return label
     }()
     
+    private let nameTextField: UITextField = {
+        let text = UITextField()
+        text.textColor = .black
+        text.autocapitalizationType = .none
+        text.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        text.placeholder = "Бегать по утрам, спать 8 часов и т.п."
+        text.toAutoLayout()
+        return text
+    }()
     
+    private let colorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ЦВЕТ"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.toAutoLayout()
+        return label
+    }()
+    
+    private let colorImage: UIImageView = {
+        let image = UIImageView(image: #imageLiteral(resourceName: "main_icon"))
+        image.layer.cornerRadius = image.frame.width / 2
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFill
+        image.toAutoLayout()
+        return image
+    }()
+    
+    private let timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "ВРЕМЯ"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.toAutoLayout()
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,18 +80,18 @@ class AddNewHabbitViewController: UIViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubview(habitName)
+        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel)
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
         
-        scrollView.backgroundColor = .yellow
-        containerView.backgroundColor = .cyan
+//        scrollView.backgroundColor = .cyan
+//        containerView.backgroundColor = .lightGray
         
         let constraints = [
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
@@ -67,10 +100,28 @@ class AddNewHabbitViewController: UIViewController {
             containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            habitName.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 21),
-            habitName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            habitName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            habitName.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 16)
+            nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 21),
+            nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            nameTextField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
+            nameTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
+            nameTextField.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -65),
+            
+            colorLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 83),
+            colorLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            colorLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -323),
+            
+            colorImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 108),
+            colorImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            colorImage.widthAnchor.constraint(equalToConstant: 30),
+            colorImage.heightAnchor.constraint(equalToConstant: 30),
+            
+            timeLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 153),
+            timeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            timeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            
         ]
         NSLayoutConstraint.activate(constraints)
     }
