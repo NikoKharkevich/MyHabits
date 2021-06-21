@@ -9,7 +9,7 @@ class AddNewHabbitViewController: UIViewController {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "НАЗВАНИЕ"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.font = footnoteSb13
         label.toAutoLayout()
         return label
     }()
@@ -18,7 +18,7 @@ class AddNewHabbitViewController: UIViewController {
         let text = UITextField()
         text.textColor = .black
         text.autocapitalizationType = .none
-        text.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        text.font = bodyR17
         text.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         text.toAutoLayout()
         return text
@@ -27,7 +27,7 @@ class AddNewHabbitViewController: UIViewController {
     private let colorLabel: UILabel = {
         let label = UILabel()
         label.text = "ЦВЕТ"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.font = footnoteSb13
         label.toAutoLayout()
         return label
     }()
@@ -44,9 +44,25 @@ class AddNewHabbitViewController: UIViewController {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.text = "ВРЕМЯ"
-        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.font = footnoteSb13
         label.toAutoLayout()
         return label
+    }()
+    
+    private let timeText: UITextField = {
+        let label = UITextField()
+        label.text = "Каждый день в "
+        label.font = bodyR17
+        label.toAutoLayout()
+        return label
+    }()
+    
+    private let date: UIDatePicker = {
+        let date = UIDatePicker()
+        date.datePickerMode = .time
+        
+        date.toAutoLayout()
+        return date
     }()
     
     override func viewDidLoad() {
@@ -69,7 +85,7 @@ class AddNewHabbitViewController: UIViewController {
         
         navigationItem.title = "Создать"
 //        navigationController?.navigationBar.backItem?.title = "Отменить"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "111", style: .plain, target: nil, action: nil)
+//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "111", style: .plain, target: nil, action: nil)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
     
@@ -80,13 +96,10 @@ class AddNewHabbitViewController: UIViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel)
+        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel, timeText, date)
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
-        
-//        scrollView.backgroundColor = .cyan
-//        containerView.backgroundColor = .lightGray
         
         let constraints = [
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -120,8 +133,15 @@ class AddNewHabbitViewController: UIViewController {
             timeLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 153),
             timeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             timeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            timeLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
             
+            timeText.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
+            timeText.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+//            timeText.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            date.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
+            date.leadingAnchor.constraint(equalTo: timeText.trailingAnchor, constant: 7),
+            date.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            date.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
