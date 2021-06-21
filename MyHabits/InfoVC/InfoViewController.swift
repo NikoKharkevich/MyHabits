@@ -1,9 +1,3 @@
-//
-//  InfoViewController.swift
-//  MyHabits
-//
-//  Created by Nikola Kharkevich on 16.06.2021.
-//
 
 import UIKit
 

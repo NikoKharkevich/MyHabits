@@ -1,9 +1,3 @@
-//
-//  HabitsViewController.swift
-//  MyHabits
-//
-//  Created by Nikola Kharkevich on 16.06.2021.
-//
 
 import UIKit
 
@@ -11,19 +5,26 @@ class HabitsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavigationItems()
 
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupNavigationItems() {
+        navigationItem.title = "Сегодня"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationController?.navigationBar.backgroundColor = .lightGray
+        navigationItem.rightBarButtonItem?.tintColor = .purple
     }
-    */
-
+    
+    @objc func addTapped() {
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let controller = sb.instantiateViewController(identifier: "HabitVC") as! HabitViewController
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
+        
+    }
 }
