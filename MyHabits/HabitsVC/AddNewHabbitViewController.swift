@@ -32,14 +32,27 @@ class AddNewHabbitViewController: UIViewController {
         return label
     }()
     
-    private let colorImage: UIImageView = {
-        let image = UIImageView(image: #imageLiteral(resourceName: "main_icon"))
-        image.layer.cornerRadius = image.frame.width / 2
-        image.clipsToBounds = true
-        image.contentMode = .scaleAspectFill
-        image.toAutoLayout()
-        return image
+    private let colorImage: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "myPurple")
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(pickColor), for: .touchUpInside)
+        button.toAutoLayout()
+        return button
     }()
+    
+    var pickerVar: Any?
+    @objc fileprivate func pickColor() {
+        let picker = UIColorPickerViewController()
+        picker.selectedColor = colorImage.backgroundColor!
+        self.pickerVar = picker.publisher(for: \.selectedColor)
+            .sink { color in
+                DispatchQueue.main.async {
+                    self.colorImage.backgroundColor = color
+                }
+            }
+        self.present(picker, animated: true, completion: nil)
+    }
     
     private let timeLabel: UILabel = {
         let label = UILabel()
@@ -51,7 +64,7 @@ class AddNewHabbitViewController: UIViewController {
     
     private let timeText: UITextField = {
         let label = UITextField()
-        label.text = "Каждый день в "
+        label.text = "Каждый день в"
         label.font = bodyR17
         label.toAutoLayout()
         return label
@@ -60,7 +73,7 @@ class AddNewHabbitViewController: UIViewController {
     private let date: UIDatePicker = {
         let date = UIDatePicker()
         date.datePickerMode = .time
-        
+
         date.toAutoLayout()
         return date
     }()
@@ -68,6 +81,7 @@ class AddNewHabbitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        self.nameTextField.delegate = self
         setupNavigationItems()
         setupViews()
     }
@@ -145,5 +159,41 @@ class AddNewHabbitViewController: UIViewController {
         ]
         NSLayoutConstraint.activate(constraints)
     }
+    
+    // MARK: Keyboard
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc fileprivate func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            scrollView.contentInset.bottom = keyboardSize.height
+            scrollView.verticalScrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        }
+    }
+    
+    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = .zero
+        scrollView.verticalScrollIndicatorInsets = .zero
+    }
 
+}
+
+extension AddNewHabbitViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return true
+    }
+    
 }
