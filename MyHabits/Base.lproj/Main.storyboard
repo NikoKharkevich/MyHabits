@@ -51,7 +51,7 @@
                         <viewLayoutGuide key="safeArea" id="njB-ac-j0n"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hqr-eQ-RcQ"/>
+                    <navigationItem key="navigationItem" id="oZg-gj-i8T"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ltj-Xe-sc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -98,7 +98,7 @@
         <!--Привычки-->
         <scene sceneID="6vO-He-Ilh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="clg-sX-fLz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HabitsNavVC" automaticallyAdjustsScrollViewInsets="NO" id="clg-sX-fLz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Привычки" image="rectangle.grid.1x2.fill" catalog="system" selectedImage="rectangle.grid.1x2.fill" id="3CY-xp-npJ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KrF-rh-9it">

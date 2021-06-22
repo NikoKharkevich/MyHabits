@@ -63,8 +63,8 @@ class AddNewHabbitViewController: UIViewController {
         return label
     }()
     
-    private let timeText1: UITextField = {
-        let label = UITextField()
+    private let timeText1: UILabel = {
+        let label = UILabel()
         label.font = bodyR17
         label.text = "Каждый день в: "
         label.toAutoLayout()
@@ -115,13 +115,19 @@ class AddNewHabbitViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         
         navigationItem.title = "Создать"
-//        navigationController?.navigationBar.backItem?.title = "Отменить"
-//        navigationItem.backBarButtonItem = UIBarButtonItem(title: "111", style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismiss1))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
     
     @objc func saveHabit() {
- 
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let controller = sb.instantiateViewController(identifier: "HabitsNavVC") as! UINavigationController
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func dismiss1() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     private func setupViews() {
@@ -168,7 +174,7 @@ class AddNewHabbitViewController: UIViewController {
             timeText1.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
             timeText1.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             
-            timeText2.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 180),
+            timeText2.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
             timeText2.leadingAnchor.constraint(equalTo: timeText1.trailingAnchor),
             timeText2.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             

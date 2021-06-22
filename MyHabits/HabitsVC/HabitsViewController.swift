@@ -23,9 +23,8 @@ class HabitsViewController: UIViewController {
     
     @objc func addTapped() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let controller = sb.instantiateViewController(identifier: "NewHabit") as! AddNewHabbitViewController
+        let controller = sb.instantiateViewController(identifier: "AddNewNavVC") as! UINavigationController
         controller.modalPresentationStyle = .fullScreen
-//        self.present(controller, animated: true, completion: nil)
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.present(controller, animated: true, completion: nil)
     }
 }
