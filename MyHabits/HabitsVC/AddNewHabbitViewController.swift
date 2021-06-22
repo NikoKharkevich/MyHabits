@@ -49,6 +49,7 @@ class AddNewHabbitViewController: UIViewController {
             .sink { color in
                 DispatchQueue.main.async {
                     self.colorImage.backgroundColor = color
+                    self.timeText2.textColor = color
                 }
             }
         self.present(picker, animated: true, completion: nil)
@@ -62,20 +63,36 @@ class AddNewHabbitViewController: UIViewController {
         return label
     }()
     
-    private let timeText: UITextField = {
+    private let timeText1: UITextField = {
         let label = UITextField()
-        label.text = "Каждый день в"
         label.font = bodyR17
+        label.text = "Каждый день в: "
         label.toAutoLayout()
         return label
     }()
     
-    private let date: UIDatePicker = {
-        let date = UIDatePicker()
-        date.datePickerMode = .time
-
-        date.toAutoLayout()
-        return date
+    private let timeText2: UILabel = {
+        let label = UILabel()
+        label.font = bodyR17
+        label.textColor = UIColor(named: "myPurple")
+        label.toAutoLayout()
+        return label
+    }()
+    
+  @objc func dateToTextField() {
+        let format = DateFormatter()
+        format.dateStyle = .none
+        format.timeStyle = .short
+        timeText2.text = format.string(from: datePicker.date)
+    }
+    
+    private let datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        picker.preferredDatePickerStyle = .wheels
+        picker.addTarget(self, action: #selector(dateToTextField), for: .valueChanged)
+        picker.toAutoLayout()
+        return picker
     }()
     
     override func viewDidLoad() {
@@ -110,7 +127,7 @@ class AddNewHabbitViewController: UIViewController {
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel, timeText, date)
+        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel, timeText1, timeText2, datePicker)
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
@@ -148,14 +165,17 @@ class AddNewHabbitViewController: UIViewController {
             timeLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             timeLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             
-            timeText.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
-            timeText.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-//            timeText.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            timeText1.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
+            timeText1.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             
-            date.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 178),
-            date.leadingAnchor.constraint(equalTo: timeText.trailingAnchor, constant: 7),
-            date.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            date.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            timeText2.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 180),
+            timeText2.leadingAnchor.constraint(equalTo: timeText1.trailingAnchor),
+            timeText2.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            datePicker.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 198),
+            datePicker.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            datePicker.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            datePicker.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }
