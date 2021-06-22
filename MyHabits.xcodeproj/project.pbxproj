@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C001BF4226826FB9006D1A17 /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */; };
+		C001BF4426827496006D1A17 /* keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4326827495006D1A17 /* keyboard.swift */; };
 		C0409E252680A41800FCA6B8 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0409E242680A41800FCA6B8 /* Fonts.swift */; };
 		C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A0267A4A060063B25E /* AppDelegate.swift */; };
 		C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A2267A4A060063B25E /* SceneDelegate.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
+		C001BF4326827495006D1A17 /* keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboard.swift; sourceTree = "<group>"; };
 		C0409E242680A41800FCA6B8 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C057409D267A4A060063B25E /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05740A0267A4A060063B25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			children = (
 				C05740B4267A4B880063B25E /* HabitsStore.swift */,
 				C05740C0267A60360063B25E /* toAutolayout().swift */,
+				C001BF4326827495006D1A17 /* keyboard.swift */,
 				C05740C2267A62AD0063B25E /* addSubviews().swift */,
 				C0409E242680A41800FCA6B8 /* Fonts.swift */,
 				C0FCA10226807050003D576F /* Assets.xcassets */,
@@ -109,6 +114,7 @@
 			children = (
 				C05740B6267A5B080063B25E /* HabitsViewController.swift */,
 				C0FCA100268067DB003D576F /* AddNewHabbitViewController.swift */,
+				C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */,
 				C05740BA267A5E7E0063B25E /* HabitViewController.swift */,
 			);
 			path = HabitsVC;
@@ -199,9 +205,11 @@
 				C05740BB267A5E7E0063B25E /* HabitViewController.swift in Sources */,
 				C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */,
 				C05740B7267A5B080063B25E /* HabitsViewController.swift in Sources */,
+				C001BF4426827496006D1A17 /* keyboard.swift in Sources */,
 				C0FCA101268067DB003D576F /* AddNewHabbitViewController.swift in Sources */,
 				C05740B9267A5B3E0063B25E /* InfoViewController.swift in Sources */,
 				C0409E252680A41800FCA6B8 /* Fonts.swift in Sources */,
+				C001BF4226826FB9006D1A17 /* EditHabitViewController.swift in Sources */,
 				C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */,
 				C05740C7267A6D9D0063B25E /* InfoText.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nl4-3R-9sz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wJg-e4-Hnj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -24,6 +24,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UHz-ak-xTC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2392.753623188406" y="347.54464285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mef-MT-tXu">
+            <objects>
+                <navigationController storyboardIdentifier="EditHabitNavVC" id="wJg-e4-Hnj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aN7-Ie-vB8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kIl-uZ-uO1" kind="relationship" relationship="rootViewController" id="oqo-Ox-uCg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UzV-x8-rYV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3354" y="-1047"/>
+        </scene>
+        <!--Edit Habit View Controller-->
+        <scene sceneID="Sh3-n2-RR0">
+            <objects>
+                <viewController storyboardIdentifier="EditHabit" id="kIl-uZ-uO1" customClass="EditHabitViewController" customModule="MyHabits" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UHP-Dj-R11">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0vx-mx-8AJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qHB-qm-Kdm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ltN-g7-kR5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4200" y="-1046"/>
         </scene>
         <!--Habits View Controller-->
         <scene sceneID="Z23-i6-zex">
