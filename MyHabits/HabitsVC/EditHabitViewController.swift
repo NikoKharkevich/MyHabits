@@ -95,15 +95,6 @@ class EditHabitViewController: UIViewController {
         return picker
     }()
     
-//    private let deleteHabit: UILabel = {
-//        let label = UILabel()
-//        label.font = bodyR17
-//        label.textColor = .red
-//        label.text = "Удалить привычку"
-//        label.toAutoLayout()
-//        return label
-//    }()
-    
     private let deleteHabit: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = bodyR17

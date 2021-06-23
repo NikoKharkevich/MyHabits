@@ -2,12 +2,20 @@
 import UIKit
 
 class HabitsViewController: UIViewController {
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+
+        return collectionView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "myLightGray")
         setupNavigationItems()
-
+        setupCollectionView()
     }
     
     private func setupNavigationItems() {
@@ -28,3 +36,78 @@ class HabitsViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
 }
+
+private extension HabitsViewController {
+    func setupCollectionView() {
+        view.addSubview(collectionView)
+        collectionView.toAutoLayout()
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: HabitCollectionViewCell.self))
+        
+        let constraints = [
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+}
+
+// MARK: UICollectionViewDataSource
+extension HabitsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCollectionViewCell", for: indexPath) as! HabitCollectionViewCell
+        cell.backgroundColor = .yellow
+        
+        return cell
+    }
+}
+
+// MARK: UICollectionViewDelegateFlowLayout
+extension HabitsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: cellWidth, height: 130)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+       return baseInset
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: baseInset, left: baseInset, bottom: .zero, right: baseInset)
+    }
+    
+}
+
+//MARK: Cell Insets
+extension HabitsViewController {
+    private var baseInset: CGFloat { return 12 }
+    
+//    space between cells in row
+    private var sectionInset: CGFloat { return 17 }
+    
+//    method for calculating cell width
+    private func widthForCell(with collectionVoew: UICollectionView, cellsInRow: Int) -> CGFloat {
+        let totalInset: CGFloat = baseInset * CGFloat(cellsInRow - 1)
+        let sideInset: CGFloat = sectionInset * 2
+        let cellWidth = (collectionView.frame.width - totalInset - sideInset) / CGFloat(cellsInRow)
+        return cellWidth
+    }
+    
+//    setting required number of cells in row here
+    private var cellWidth: CGFloat {
+        return widthForCell(with: collectionView, cellsInRow: 1)
+    }
+}
+

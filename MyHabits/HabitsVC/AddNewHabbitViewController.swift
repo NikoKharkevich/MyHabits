@@ -120,10 +120,11 @@ class AddNewHabbitViewController: UIViewController {
     }
     
     @objc func saveHabit() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let controller = sb.instantiateViewController(identifier: "HabitsNavVC") as! UINavigationController
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        let newHabit = Habit(name: nameLabel.text!, date: datePicker.date, color: colorImage.backgroundColor!)
+        let store = HabitsStore.shared
+        store.habits.append(newHabit)
+        self.navigationController?.dismiss(animated: true, completion: nil)
+
     }
     
     @objc func dismiss1() {
@@ -213,7 +214,6 @@ class AddNewHabbitViewController: UIViewController {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-
 }
 
 extension AddNewHabbitViewController: UITextFieldDelegate {
@@ -221,5 +221,4 @@ extension AddNewHabbitViewController: UITextFieldDelegate {
         nameTextField.resignFirstResponder()
         return true
     }
-    
 }
