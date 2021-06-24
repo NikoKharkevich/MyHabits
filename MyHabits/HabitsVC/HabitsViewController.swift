@@ -45,6 +45,7 @@ private extension HabitsViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(HabitCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: HabitCollectionViewCell.self))
+        collectionView.register(ProgressCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: ProgressCollectionViewCell.self))
         
         let constraints = [
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -59,14 +60,34 @@ private extension HabitsViewController {
 // MARK: UICollectionViewDataSource
 extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        switch section {
+        case 0:
+            return 1
+        default:
+            return 5
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCollectionViewCell", for: indexPath) as! HabitCollectionViewCell
-        cell.backgroundColor = .yellow
-        
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCollectionViewCell", for: indexPath) as! ProgressCollectionViewCell
+            cell.backgroundColor = .red
+            cell.layer.cornerRadius = 8
+            cell.layer.masksToBounds = true
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCollectionViewCell", for: indexPath) as! HabitCollectionViewCell
+            cell.backgroundColor = .yellow
+            cell.layer.cornerRadius = 8
+            cell.layer.masksToBounds = true
+            return cell
+        }
+
     }
 }
 
