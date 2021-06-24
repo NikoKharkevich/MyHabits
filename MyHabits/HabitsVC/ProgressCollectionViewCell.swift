@@ -5,39 +5,38 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "ProgressCollectionViewCell"
     
-    var habitName: UILabel = {
+    var progressLabel: UILabel = {
         let label = UILabel()
         label.text = "Все получится!"
-        label.textColor = .blue
-        label.font = headlineSb17
+        label.textColor = .systemGray
+        label.font = footnoteSb13
         label.toAutoLayout()
         return label
-        
     }()
     
-    var habitTime: UILabel = {
+    var percentLabel: UILabel = {
         let label = UILabel()
-        label.text = "Каждый день в 7:00"
-        label.textColor = .systemGray2
-        label.font = captionR12
+        label.text = "50%"
+        label.textColor = .systemGray
+        label.font = footnoteSb13
         label.toAutoLayout()
         return label
     }()
      
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubviews(habitName, habitTime)
+        contentView.addSubviews(progressLabel, percentLabel)
         
         let constraints = [
-            habitName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            habitName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            habitName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            habitName.heightAnchor.constraint(equalToConstant: 22),
+            progressLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            progressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            progressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            progressLabel.heightAnchor.constraint(equalToConstant: 18),
             
-            habitTime.topAnchor.constraint(equalTo: habitName.bottomAnchor, constant: 4),
-            habitTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            habitTime.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            habitTime.heightAnchor.constraint(equalToConstant: 16)
+            percentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+//            habitTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            percentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            percentLabel.heightAnchor.constraint(equalToConstant: 18)
         ]
         NSLayoutConstraint.activate(constraints)
     }

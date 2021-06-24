@@ -33,17 +33,20 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let colorCircle: UIButton = {
+    var colorCircle: UIButton = {
         let button = UIButton()
-//        button.backgroundColor = UIColor.cyan
         let image = UIImage(systemName: "checkmark.circle")
         button.setBackgroundImage(image, for: .normal)
         button.layer.cornerRadius = 19
         button.clipsToBounds = true
-//        button.addTarget(self, action: #selector(tapOnLoginButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapOnColor), for: .touchUpInside)
         button.toAutoLayout()
         return button
     }()
+    
+    @objc func tapOnColor() {
+        print(type(of: self), #function)
+    }
      
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,5 +84,4 @@ class HabitCollectionViewCell: UICollectionViewCell {
 
 extension HabitCollectionViewCell {
     private var baseInset: CGFloat { return 20 }
-
 }

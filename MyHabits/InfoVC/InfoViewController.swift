@@ -9,7 +9,7 @@ class InfoViewController: UIViewController {
     private let textLabel: UILabel = {
         let label = UILabel()
         label.text = infoViewTextLabel
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = titleSb20
         label.toAutoLayout()
         return label
     }()
@@ -17,7 +17,7 @@ class InfoViewController: UIViewController {
     private let textDescription: UILabel = {
         let label = UILabel()
         label.text = infoViewTextDescription
-        label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        label.font = bodyR17
         label.numberOfLines = 0
         label.toAutoLayout()
         return label

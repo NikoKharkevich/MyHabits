@@ -11,7 +11,9 @@
 		C001BF4426827496006D1A17 /* keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4326827495006D1A17 /* keyboard.swift */; };
 		C001BF4626830767006D1A17 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4526830767006D1A17 /* HabitCollectionViewCell.swift */; };
 		C001BF4826848927006D1A17 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4726848927006D1A17 /* ProgressCollectionViewCell.swift */; };
-		C0409E252680A41800FCA6B8 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0409E242680A41800FCA6B8 /* Fonts.swift */; };
+		C001BF4C2684EAE9006D1A17 /* myColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4B2684EAE9006D1A17 /* myColors.swift */; };
+		C001BF4E2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */; };
+		C0409E252680A41800FCA6B8 /* myFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0409E242680A41800FCA6B8 /* myFonts.swift */; };
 		C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A0267A4A060063B25E /* AppDelegate.swift */; };
 		C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A2267A4A060063B25E /* SceneDelegate.swift */; };
 		C05740A8267A4A060063B25E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C05740A6267A4A060063B25E /* Main.storyboard */; };
@@ -19,7 +21,7 @@
 		C05740B5267A4B880063B25E /* HabitsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740B4267A4B880063B25E /* HabitsStore.swift */; };
 		C05740B7267A5B080063B25E /* HabitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740B6267A5B080063B25E /* HabitsViewController.swift */; };
 		C05740B9267A5B3E0063B25E /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740B8267A5B3E0063B25E /* InfoViewController.swift */; };
-		C05740BB267A5E7E0063B25E /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740BA267A5E7E0063B25E /* HabitViewController.swift */; };
+		C05740BB267A5E7E0063B25E /* HabitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740BA267A5E7E0063B25E /* HabitDetailsViewController.swift */; };
 		C05740C1267A60360063B25E /* toAutolayout().swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740C0267A60360063B25E /* toAutolayout().swift */; };
 		C05740C3267A62AD0063B25E /* addSubviews().swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740C2267A62AD0063B25E /* addSubviews().swift */; };
 		C05740C7267A6D9D0063B25E /* InfoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740C6267A6D9D0063B25E /* InfoText.swift */; };
@@ -32,7 +34,9 @@
 		C001BF4326827495006D1A17 /* keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboard.swift; sourceTree = "<group>"; };
 		C001BF4526830767006D1A17 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		C001BF4726848927006D1A17 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
-		C0409E242680A41800FCA6B8 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C001BF4B2684EAE9006D1A17 /* myColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColors.swift; sourceTree = "<group>"; };
+		C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		C0409E242680A41800FCA6B8 /* myFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFonts.swift; sourceTree = "<group>"; };
 		C057409D267A4A060063B25E /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05740A0267A4A060063B25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C05740A2267A4A060063B25E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +46,7 @@
 		C05740B4267A4B880063B25E /* HabitsStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitsStore.swift; sourceTree = "<group>"; };
 		C05740B6267A5B080063B25E /* HabitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsViewController.swift; sourceTree = "<group>"; };
 		C05740B8267A5B3E0063B25E /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		C05740BA267A5E7E0063B25E /* HabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		C05740BA267A5E7E0063B25E /* HabitDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsViewController.swift; sourceTree = "<group>"; };
 		C05740C0267A60360063B25E /* toAutolayout().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "toAutolayout().swift"; sourceTree = "<group>"; };
 		C05740C2267A62AD0063B25E /* addSubviews().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "addSubviews().swift"; sourceTree = "<group>"; };
 		C05740C6267A6D9D0063B25E /* InfoText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoText.swift; sourceTree = "<group>"; };
@@ -61,6 +65,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C001BF492684E93F006D1A17 /* HabitVC */ = {
+			isa = PBXGroup;
+			children = (
+				C05740BA267A5E7E0063B25E /* HabitDetailsViewController.swift */,
+				C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */,
+				C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */,
+				C0FCA100268067DB003D576F /* AddNewHabbitViewController.swift */,
+			);
+			path = HabitVC;
+			sourceTree = "<group>";
+		};
+		C001BF4A2684E99A006D1A17 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C0409E242680A41800FCA6B8 /* myFonts.swift */,
+				C001BF4B2684EAE9006D1A17 /* myColors.swift */,
+				C05740C0267A60360063B25E /* toAutolayout().swift */,
+				C05740C2267A62AD0063B25E /* addSubviews().swift */,
+				C001BF4326827495006D1A17 /* keyboard.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		C0574094267A4A060063B25E = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +111,9 @@
 				C05740A6267A4A060063B25E /* Main.storyboard */,
 				C05740BF267A5F760063B25E /* InfoVC */,
 				C05740BE267A5F570063B25E /* HabitsVC */,
+				C001BF492684E93F006D1A17 /* HabitVC */,
 				C05740BD267A5F090063B25E /* Store */,
+				C001BF4A2684E99A006D1A17 /* Helpers */,
 				C05740BC267A5EAE0063B25E /* system */,
 				C05740AE267A4A080063B25E /* Info.plist */,
 			);
@@ -104,10 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				C05740B4267A4B880063B25E /* HabitsStore.swift */,
-				C05740C0267A60360063B25E /* toAutolayout().swift */,
-				C001BF4326827495006D1A17 /* keyboard.swift */,
-				C05740C2267A62AD0063B25E /* addSubviews().swift */,
-				C0409E242680A41800FCA6B8 /* Fonts.swift */,
 				C0FCA10226807050003D576F /* Assets.xcassets */,
 			);
 			path = Store;
@@ -119,9 +144,6 @@
 				C05740B6267A5B080063B25E /* HabitsViewController.swift */,
 				C001BF4526830767006D1A17 /* HabitCollectionViewCell.swift */,
 				C001BF4726848927006D1A17 /* ProgressCollectionViewCell.swift */,
-				C0FCA100268067DB003D576F /* AddNewHabbitViewController.swift */,
-				C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */,
-				C05740BA267A5E7E0063B25E /* HabitViewController.swift */,
 			);
 			path = HabitsVC;
 			sourceTree = "<group>";
@@ -206,20 +228,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				C05740C3267A62AD0063B25E /* addSubviews().swift in Sources */,
+				C001BF4C2684EAE9006D1A17 /* myColors.swift in Sources */,
 				C05740B5267A4B880063B25E /* HabitsStore.swift in Sources */,
 				C05740C1267A60360063B25E /* toAutolayout().swift in Sources */,
-				C05740BB267A5E7E0063B25E /* HabitViewController.swift in Sources */,
+				C05740BB267A5E7E0063B25E /* HabitDetailsViewController.swift in Sources */,
 				C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */,
 				C05740B7267A5B080063B25E /* HabitsViewController.swift in Sources */,
 				C001BF4426827496006D1A17 /* keyboard.swift in Sources */,
 				C0FCA101268067DB003D576F /* AddNewHabbitViewController.swift in Sources */,
 				C05740B9267A5B3E0063B25E /* InfoViewController.swift in Sources */,
 				C001BF4626830767006D1A17 /* HabitCollectionViewCell.swift in Sources */,
-				C0409E252680A41800FCA6B8 /* Fonts.swift in Sources */,
+				C0409E252680A41800FCA6B8 /* myFonts.swift in Sources */,
 				C001BF4826848927006D1A17 /* ProgressCollectionViewCell.swift in Sources */,
 				C001BF4226826FB9006D1A17 /* EditHabitViewController.swift in Sources */,
 				C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */,
 				C05740C7267A6D9D0063B25E /* InfoText.swift in Sources */,
+				C001BF4E2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

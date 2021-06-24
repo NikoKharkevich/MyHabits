@@ -6,21 +6,20 @@ class HabitsViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
-
+        collectionView.backgroundColor = myLightGray
         return collectionView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "myLightGray")
+        view.backgroundColor = myLightGray
         setupNavigationItems()
         setupCollectionView()
     }
     
     private func setupNavigationItems() {
-        navigationController?.navigationBar.backgroundColor = UIColor(named: "myLightGray")
-        navigationController?.navigationBar.tintColor = UIColor(named: "myPurple")
+        navigationController?.navigationBar.backgroundColor = myLightGray
+        navigationController?.navigationBar.tintColor = myPurple
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isHidden = false
@@ -64,7 +63,7 @@ extension HabitsViewController: UICollectionViewDataSource {
         case 0:
             return 1
         default:
-            return 5
+            return HabitsStore.shared.habits.count
         }
     }
     
@@ -72,29 +71,39 @@ extension HabitsViewController: UICollectionViewDataSource {
         return 2
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+                let vc = storyboard?.instantiateViewController(identifier: "HabitDetailsVC") as! HabitDetailsViewController
+                navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProgressCollectionViewCell", for: indexPath) as! ProgressCollectionViewCell
-            cell.backgroundColor = .red
+            cell.backgroundColor = .white
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCollectionViewCell", for: indexPath) as! HabitCollectionViewCell
-            cell.backgroundColor = .yellow
+            cell.backgroundColor = .white
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
             return cell
         }
-
     }
+    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension HabitsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: cellWidth, height: 130)
+        switch indexPath.section {
+        case 0:
+            return CGSize(width: cellWidth, height: 60)
+        default:
+            return CGSize(width: cellWidth, height: 130)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
