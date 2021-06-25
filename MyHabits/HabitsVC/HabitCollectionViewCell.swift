@@ -1,14 +1,29 @@
 
 import UIKit
 
+protocol HabitCollectionViewCellDelegate {
+    func someFunc()
+}
 class HabitCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: HabitCollectionViewCell?
+    
+    
+    var habit: Habit? {
+        didSet {
+            habitName.text = habit?.name
+            habitName.textColor = habit?.color
+            habitTime.text = habit!.dateString
+            colorCircle.backgroundColor = habit?.color
+            colorCircle.layer.borderColor = habit?.color.cgColor
+            counter.text = "Счетчик: \(habit?.trackDates.count ?? 0)"
+        }
+    }
     
     static let identifier = "HabitCollectionViewCell"
     
     var habitName: UILabel = {
         let label = UILabel()
-        label.text = "Пей воду!"
-        label.textColor = .blue
         label.font = headlineSb17
         label.toAutoLayout()
         return label
@@ -17,7 +32,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var habitTime: UILabel = {
         let label = UILabel()
-        label.text = "Каждый день в 7:00"
         label.textColor = .systemGray2
         label.font = captionR12
         label.toAutoLayout()
@@ -26,18 +40,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var counter: UILabel = {
         let label = UILabel()
-        label.text = "Счетчик: 3"
+
         label.textColor = .systemGray2
         label.font = captionR12
         label.toAutoLayout()
         return label
     }()
     
-    var colorCircle: UIButton = {
+    private lazy var colorCircle: UIButton = {
         let button = UIButton()
-        let image = UIImage(systemName: "checkmark.circle")
-        button.setBackgroundImage(image, for: .normal)
+        button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 19
+        button.layer.borderWidth = 1
+        button.layer.borderColor = myPurple?.cgColor
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(tapOnColor), for: .touchUpInside)
         button.toAutoLayout()
@@ -45,6 +60,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func tapOnColor() {
+        if colorCircle.currentBackgroundImage != UIImage(systemName: "checkmark.circle.fill") {
+            let image = UIImage(systemName: "checkmark.circle.fill")
+            colorCircle.setBackgroundImage(image, for: .normal)
+            counter.text = "Счетчик: \(habit?.trackDates.count ?? 0 + 1)"
+        } else {
+            colorCircle.setBackgroundImage(nil, for: .normal)
+        }
         print(type(of: self), #function)
     }
      

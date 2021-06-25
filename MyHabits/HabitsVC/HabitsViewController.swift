@@ -33,6 +33,7 @@ class HabitsViewController: UIViewController {
         let controller = sb.instantiateViewController(identifier: "AddNewNavVC") as! UINavigationController
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true, completion: nil)
+        print(type(of: self), #function)
     }
 }
 
@@ -89,6 +90,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.backgroundColor = .white
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
+            cell.habit = HabitsStore.shared.habits[indexPath.row]
             return cell
         }
     }

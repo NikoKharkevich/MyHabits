@@ -143,6 +143,7 @@ class EditHabitViewController: UIViewController {
     }
     
     @objc func saveHabit() {
+        print(type(of: self), #function)
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let controller = sb.instantiateViewController(identifier: "HabitsNavVC") as! UINavigationController
         controller.modalPresentationStyle = .fullScreen
@@ -151,6 +152,7 @@ class EditHabitViewController: UIViewController {
     
     @objc func dismiss1() {
         self.navigationController?.dismiss(animated: true, completion: nil)
+        print(type(of: self), #function)
     }
     
     private func setupViews() {

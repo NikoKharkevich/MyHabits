@@ -120,11 +120,13 @@ class AddNewHabbitViewController: UIViewController {
     }
     
     @objc func saveHabit() {
-        let newHabit = Habit(name: nameLabel.text!, date: datePicker.date, color: colorImage.backgroundColor!)
+        let newHabit = Habit(name: nameTextField.text ?? "No name",
+            date: datePicker.date,
+            color: colorImage.backgroundColor ?? .blue)
         let store = HabitsStore.shared
         store.habits.append(newHabit)
+        print(store.habits.count)
         self.navigationController?.dismiss(animated: true, completion: nil)
-
     }
     
     @objc func dismiss1() {
