@@ -3,6 +3,12 @@ import UIKit
 
 class HabitDetailsViewController: UIViewController {
     
+    var habit: Habit? {
+        didSet {
+            navigationItem.title = habit?.name
+        }
+    }
+    
     private let tableView = UITableView(frame: .zero, style: .plain)
 
     override func viewDidLoad() {
@@ -17,8 +23,6 @@ class HabitDetailsViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = false
-        
-        navigationItem.title = "111"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editHabit))
     }
     
@@ -65,8 +69,9 @@ extension HabitDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        navigationItem.title = HabitsStore.shared.habits.description
         let cell = tableView.dequeueReusableCell(withIdentifier: "HabitDetailsTableViewCell", for: indexPath) as! HabitDetailsTableViewCell
-        cell.timeLabel.text = ("\(HabitsStore.shared.dates.count)")
+        cell.timeLabel.text = "String(HabitsStore.shared.dates[indexPath.row])"
         return cell
     }
     

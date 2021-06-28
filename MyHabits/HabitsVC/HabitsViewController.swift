@@ -19,6 +19,7 @@ class HabitsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         collectionView.reloadData()
     }
     
@@ -78,8 +79,9 @@ extension HabitsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-                let vc = storyboard?.instantiateViewController(identifier: "HabitDetailsVC") as! HabitDetailsViewController
-                navigationController?.pushViewController(vc, animated: true)
+        guard indexPath.section != 0 else { return }
+        let vc = storyboard?.instantiateViewController(identifier: "HabitDetailsVC") as! HabitDetailsViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,10 +98,12 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
             cell.habit = HabitsStore.shared.habits[indexPath.row]
+            
+            cell.delegate = self
+            
             return cell
         }
     }
-    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
@@ -145,6 +149,16 @@ extension HabitsViewController {
 //    setting required number of cells in row here
     private var cellWidth: CGFloat {
         return widthForCell(with: collectionView, cellsInRow: 1)
+    }
+}
+
+extension HabitsViewController: HabitCollectionViewCellDelegate {
+    func showAlert() {
+        let alertController = UIAlertController(title: nil, message: "Сегодня привычка уже отмечалась.", preferredStyle: .alert)
+        let notedAction = UIAlertAction(title: "ОК", style: .default) { _ in
+        }
+        alertController.addAction(notedAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 

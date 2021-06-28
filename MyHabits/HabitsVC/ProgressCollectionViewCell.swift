@@ -26,8 +26,10 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     private lazy var progressBar: UIProgressView = {
         let bar = UIProgressView()
         bar.progressViewStyle = .bar
-        bar.trackTintColor = myPurple
-        bar.progressTintColor = .orange
+        bar.trackTintColor = .lightGray
+        bar.progressTintColor = myPurple
+        bar.layer.cornerRadius = 3.5
+        bar.clipsToBounds = true
         bar.setProgress(0, animated: true)
         bar.progress = HabitsStore.shared.todayProgress
         bar.toAutoLayout()

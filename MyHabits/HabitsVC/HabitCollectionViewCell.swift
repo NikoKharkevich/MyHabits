@@ -2,28 +2,37 @@
 import UIKit
 
 protocol HabitCollectionViewCellDelegate {
-    func someFunc()
+    func showAlert()
 }
 class HabitCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "HabitCollectionViewCell"
     
-    weak var delegate: HabitCollectionViewCell?
+    var delegate: HabitCollectionViewCellDelegate?
     
     var habit: Habit? {
         didSet {
             habitName.text = habit?.name
             habitName.textColor = habit?.color
             habitTime.text = habit!.dateString
-            colorCircle.backgroundColor = habit?.color
             colorCircle.layer.borderColor = habit?.color.cgColor
             counter.text = "Счетчик: \(habit?.trackDates.count ?? 0)"
+           
+            if habit?.isAlreadyTakenToday == true {
+                let image = UIImage(systemName: "checkmark")
+                colorCircle.setImage(image, for: .normal)
+                colorCircle.tintColor = .white
+                colorCircle.backgroundColor = habit?.color
+            } else {
+                colorCircle.backgroundColor = .white
+            }
         }
     }
     
     var habitName: UILabel = {
         let label = UILabel()
         label.font = headlineSb17
+        label.numberOfLines = 2
         label.toAutoLayout()
         return label
         
@@ -58,30 +67,26 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     @objc func tapOnColor() {
         guard let habit = habit else { return }
-        if colorCircle.backgroundColor == .white {
+        if !habit.isAlreadyTakenToday {
             let image = UIImage(systemName: "checkmark")
             colorCircle.setImage(image, for: .normal)
             colorCircle.tintColor = .white
             colorCircle.backgroundColor = habit.color
-            counter.text = "\(habit.trackDates.count)"
-            
-            guard habit.isAlreadyTakenToday else { return }
-            HabitsStore.shared.track(self.habit!)
-            
+            counter.text = "Счетчик: \(habit.trackDates.count)"
+            HabitsStore.shared.track(habit)
         } else {
-            colorCircle.backgroundColor = .white
+            delegate?.showAlert()
         }
+    
     }
      
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubviews(habitName, habitTime, counter, colorCircle)
-        
         let constraints = [
             habitName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: baseInset),
             habitName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: baseInset),
-            habitName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            habitName.heightAnchor.constraint(equalToConstant: 22),
+            habitName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -90),
             
             habitTime.topAnchor.constraint(equalTo: habitName.bottomAnchor, constant: 4),
             habitTime.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: baseInset),

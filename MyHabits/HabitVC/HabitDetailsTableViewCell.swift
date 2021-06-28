@@ -8,7 +8,14 @@
 import UIKit
 
 class HabitDetailsTableViewCell: UITableViewCell {
-    let timeLabel: UILabel = {
+    
+    var habit: Habit? {
+        didSet {
+            timeLabel.text = habit?.dateString
+        }
+    }
+    
+    var timeLabel: UILabel = {
         let label = UILabel()
         label.font = bodyR17
         label.textColor = .black
@@ -17,8 +24,10 @@ class HabitDetailsTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let checkImage: UIImageView = {
+    let checkImage: UIImageView = {
         let image = UIImageView()
+        
+        let im = UIImage(systemName: "checkmark")
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .white
         image.toAutoLayout()

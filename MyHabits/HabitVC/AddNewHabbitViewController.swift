@@ -53,7 +53,7 @@ class AddNewHabbitViewController: UIViewController {
             .sink { color in
                 DispatchQueue.main.async {
                     self.colorImage.backgroundColor = color
-                    self.timeText2.textColor = color
+//                    self.timeText2.textColor = color
                 }
             }
         self.present(picker, animated: true, completion: nil)
@@ -84,10 +84,10 @@ class AddNewHabbitViewController: UIViewController {
     }()
     
   @objc func dateToTextField() {
-        let format = DateFormatter()
-        format.dateStyle = .none
-        format.timeStyle = .short
-        timeText2.text = format.string(from: datePicker.date)
+        let time = DateFormatter()
+        time.dateStyle = .none
+        time.timeStyle = .short
+        timeText2.text = time.string(from: datePicker.date)
     }
     
     private let datePicker: UIDatePicker = {
@@ -105,10 +105,18 @@ class AddNewHabbitViewController: UIViewController {
         self.nameTextField.delegate = self
         setupNavigationItems()
         setupViews()
+        showCurrentTime()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func showCurrentTime() {
+        let time = DateFormatter()
+        time.dateStyle = .none
+        time.timeStyle = .short
+        timeText2.text = time.string(from: datePicker.date)
     }
     
     private func setupNavigationItems() {
@@ -159,7 +167,7 @@ class AddNewHabbitViewController: UIViewController {
             
             nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 21),
             nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -65),
             
             nameTextField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
             nameTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
