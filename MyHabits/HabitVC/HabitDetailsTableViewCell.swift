@@ -8,19 +8,11 @@
 import UIKit
 
 class HabitDetailsTableViewCell: UITableViewCell {
-    
-    static let identifier = "HabitDetailsTableViewCell"
-    
-    override var reuseIdentifier: String? {
-        return "HabitDetailsTableViewCell"
-    }
-    
-    private let timeLabel: UILabel = {
+    let timeLabel: UILabel = {
         let label = UILabel()
         label.font = bodyR17
         label.textColor = .black
         label.textAlignment = .left
-        label.text = "Вчера"
         label.toAutoLayout()
         return label
     }()

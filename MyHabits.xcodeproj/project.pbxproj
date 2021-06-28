@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C001BF4226826FB9006D1A17 /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */; };
-		C001BF4426827496006D1A17 /* keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4326827495006D1A17 /* keyboard.swift */; };
 		C001BF4626830767006D1A17 /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4526830767006D1A17 /* HabitCollectionViewCell.swift */; };
 		C001BF4826848927006D1A17 /* ProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4726848927006D1A17 /* ProgressCollectionViewCell.swift */; };
 		C001BF4C2684EAE9006D1A17 /* myColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4B2684EAE9006D1A17 /* myColors.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		C001BF4126826FB9006D1A17 /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
-		C001BF4326827495006D1A17 /* keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboard.swift; sourceTree = "<group>"; };
 		C001BF4526830767006D1A17 /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		C001BF4726848927006D1A17 /* ProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		C001BF4B2684EAE9006D1A17 /* myColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColors.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 				C001BF4B2684EAE9006D1A17 /* myColors.swift */,
 				C05740C0267A60360063B25E /* toAutolayout().swift */,
 				C05740C2267A62AD0063B25E /* addSubviews().swift */,
-				C001BF4326827495006D1A17 /* keyboard.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -234,7 +231,6 @@
 				C05740BB267A5E7E0063B25E /* HabitDetailsViewController.swift in Sources */,
 				C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */,
 				C05740B7267A5B080063B25E /* HabitsViewController.swift in Sources */,
-				C001BF4426827496006D1A17 /* keyboard.swift in Sources */,
 				C0FCA101268067DB003D576F /* AddNewHabbitViewController.swift in Sources */,
 				C05740B9267A5B3E0063B25E /* InfoViewController.swift in Sources */,
 				C001BF4626830767006D1A17 /* HabitCollectionViewCell.swift in Sources */,

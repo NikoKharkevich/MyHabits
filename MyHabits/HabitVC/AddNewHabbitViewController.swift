@@ -1,6 +1,10 @@
 
 import UIKit
 
+protocol SaveHabit {
+    func saveHabit(habit: String)
+}
+
 class AddNewHabbitViewController: UIViewController {
     
     private let scrollView = UIScrollView()
@@ -119,13 +123,13 @@ class AddNewHabbitViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
     
+    
     @objc func saveHabit() {
         let newHabit = Habit(name: nameTextField.text ?? "No name",
-            date: datePicker.date,
-            color: colorImage.backgroundColor ?? .blue)
+                             date: datePicker.date,
+                             color: colorImage.backgroundColor ?? .blue)
         let store = HabitsStore.shared
         store.habits.append(newHabit)
-        print(store.habits.count)
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     

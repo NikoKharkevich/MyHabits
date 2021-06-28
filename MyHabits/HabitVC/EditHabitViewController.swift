@@ -110,8 +110,10 @@ class EditHabitViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
             print("Отмена")
         }
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [self] _ in
             print("Удалить")
+        
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)

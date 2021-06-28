@@ -7,7 +7,6 @@ class HabitDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .cyan
         setupTableView()
         setupNavigationItems()
     }
@@ -19,9 +18,8 @@ class HabitDetailsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.isHidden = false
         
-        navigationItem.title = "Сделать зарядку"
+        navigationItem.title = "111"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editHabit))
-//        navigationItem.backBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismiss1))
     }
     
     @objc func dismiss1() {
@@ -42,7 +40,7 @@ class HabitDetailsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(HabitDetailsTableViewCell.self, forCellReuseIdentifier: HabitDetailsTableViewCell.identifier)
+        tableView.register(HabitDetailsTableViewCell.self, forCellReuseIdentifier: String(describing: HabitDetailsTableViewCell.self))
         
         let constraints = [
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -59,7 +57,7 @@ class HabitDetailsViewController: UIViewController {
 extension HabitDetailsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return HabitsStore.shared.dates.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -67,8 +65,8 @@ extension HabitDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HabitDetailsTableViewCell.identifier, for: indexPath) as! HabitDetailsTableViewCell
-//        cell.ha = HabitsStore.shared.habits[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitDetailsTableViewCell", for: indexPath) as! HabitDetailsTableViewCell
+        cell.timeLabel.text = ("\(HabitsStore.shared.dates.count)")
         return cell
     }
     

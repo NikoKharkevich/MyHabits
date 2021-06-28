@@ -6,8 +6,9 @@ protocol HabitCollectionViewCellDelegate {
 }
 class HabitCollectionViewCell: UICollectionViewCell {
     
-    weak var delegate: HabitCollectionViewCell?
+    static let identifier = "HabitCollectionViewCell"
     
+    weak var delegate: HabitCollectionViewCell?
     
     var habit: Habit? {
         didSet {
@@ -19,8 +20,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
             counter.text = "Счетчик: \(habit?.trackDates.count ?? 0)"
         }
     }
-    
-    static let identifier = "HabitCollectionViewCell"
     
     var habitName: UILabel = {
         let label = UILabel()
@@ -52,22 +51,26 @@ class HabitCollectionViewCell: UICollectionViewCell {
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 19
         button.layer.borderWidth = 1
-        button.layer.borderColor = myPurple?.cgColor
-        button.clipsToBounds = true
         button.addTarget(self, action: #selector(tapOnColor), for: .touchUpInside)
         button.toAutoLayout()
         return button
     }()
     
     @objc func tapOnColor() {
-        if colorCircle.currentBackgroundImage != UIImage(systemName: "checkmark.circle.fill") {
-            let image = UIImage(systemName: "checkmark.circle.fill")
-            colorCircle.setBackgroundImage(image, for: .normal)
-            counter.text = "Счетчик: \(habit?.trackDates.count ?? 0 + 1)"
+        guard let habit = habit else { return }
+        if colorCircle.backgroundColor == .white {
+            let image = UIImage(systemName: "checkmark")
+            colorCircle.setImage(image, for: .normal)
+            colorCircle.tintColor = .white
+            colorCircle.backgroundColor = habit.color
+            counter.text = "\(habit.trackDates.count)"
+            
+            guard habit.isAlreadyTakenToday else { return }
+            HabitsStore.shared.track(self.habit!)
+            
         } else {
-            colorCircle.setBackgroundImage(nil, for: .normal)
+            colorCircle.backgroundColor = .white
         }
-        print(type(of: self), #function)
     }
      
     override init(frame: CGRect) {
@@ -101,7 +104,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 extension HabitCollectionViewCell {

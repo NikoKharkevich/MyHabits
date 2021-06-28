@@ -15,6 +15,11 @@ class HabitsViewController: UIViewController {
         view.backgroundColor = myLightGray
         setupNavigationItems()
         setupCollectionView()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
     
     private func setupNavigationItems() {
