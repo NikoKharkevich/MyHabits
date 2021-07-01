@@ -91,6 +91,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.backgroundColor = .white
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
+            cell.updateProgress()
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HabitCollectionViewCell", for: indexPath) as! HabitCollectionViewCell
@@ -98,6 +99,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.layer.cornerRadius = 8
             cell.layer.masksToBounds = true
             cell.habit = HabitsStore.shared.habits[indexPath.row]
+            cell.isChecked = { self.collectionView.reloadData() }
             
             cell.delegate = self
             

@@ -16,7 +16,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     private let percentLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
+        label.text = "0 %"
         label.textColor = .systemGray
         label.font = footnoteSb13
         label.toAutoLayout()
@@ -60,6 +60,12 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updateProgress() {
+        progressBar.setProgress(HabitsStore.shared.todayProgress, animated: true)
+        let percentageInt = Int(HabitsStore.shared.todayProgress * 100)
+        percentLabel.text = "\(percentageInt) %"
     }
     
 }

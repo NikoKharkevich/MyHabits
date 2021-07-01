@@ -3,12 +3,6 @@ import UIKit
 
 class HabitDetailsViewController: UIViewController {
     
-    var habit: Habit? {
-        didSet {
-            navigationItem.title = habit?.name
-        }
-    }
-    
     private let tableView = UITableView(frame: .zero, style: .plain)
 
     override func viewDidLoad() {
@@ -69,9 +63,10 @@ extension HabitDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        navigationItem.title = HabitsStore.shared.habits.description
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HabitDetailsTableViewCell", for: indexPath) as! HabitDetailsTableViewCell
-        cell.timeLabel.text = "String(HabitsStore.shared.dates[indexPath.row])"
+        navigationItem.title = HabitsStore.shared.habits[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HabitDetailsTableViewCell.self), for: indexPath) as! HabitDetailsTableViewCell
+        let i = HabitsStore.shared.dates.count - indexPath.row - 1
+        cell.timeLabel.text = HabitsStore.shared.trackDateString(forIndex: i)
         return cell
     }
     

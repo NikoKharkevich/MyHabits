@@ -112,6 +112,11 @@ class EditHabitViewController: UIViewController {
         }
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [self] _ in
             print("Удалить")
+            let store = HabitsStore.shared
+            let newHabit = Habit(name: nameTextField.text ?? "No name",
+                                 date: datePicker.date,
+                                 color: colorImage.backgroundColor ?? .blue)
+            store.habits.removeAll(where: { $0 == newHabit } )
         
             self.navigationController?.dismiss(animated: true, completion: nil)
         }

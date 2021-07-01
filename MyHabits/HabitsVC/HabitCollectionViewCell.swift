@@ -9,6 +9,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     static let identifier = "HabitCollectionViewCell"
     
     var delegate: HabitCollectionViewCellDelegate?
+    var isChecked: (() -> Void)?
     
     var habit: Habit? {
         didSet {
@@ -74,6 +75,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             colorCircle.backgroundColor = habit.color
             counter.text = "Счетчик: \(habit.trackDates.count)"
             HabitsStore.shared.track(habit)
+            if let trackHabit = isChecked { trackHabit() }
         } else {
             delegate?.showAlert()
         }
