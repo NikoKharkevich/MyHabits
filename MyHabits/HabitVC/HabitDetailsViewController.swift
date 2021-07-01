@@ -2,6 +2,7 @@
 import UIKit
 
 class HabitDetailsViewController: UIViewController {
+    var habit: Habit? 
     
     private let tableView = UITableView(frame: .zero, style: .plain)
 
@@ -11,12 +12,24 @@ class HabitDetailsViewController: UIViewController {
         setupNavigationItems()
     }
     
+    var titleLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     private func setupNavigationItems() {
-        navigationController?.navigationBar.backgroundColor = myLightGray
-        navigationController?.navigationBar.tintColor = myPurple
+        let nav = navigationController?.navigationBar
+        nav?.backgroundColor = myLightGray
+        nav?.tintColor = myPurple
+        nav?.prefersLargeTitles = false
+        nav?.isHidden = false
+
+        navigationItem.titleView = titleLabel
+        titleLabel.text = habit?.name
+        titleLabel.textColor = habit?.color
         
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.isHidden = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editHabit))
     }
     
@@ -63,10 +76,20 @@ extension HabitDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        navigationItem.title = HabitsStore.shared.habits[indexPath.row].name
+
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: HabitDetailsTableViewCell.self), for: indexPath) as! HabitDetailsTableViewCell
         let i = HabitsStore.shared.dates.count - indexPath.row - 1
         cell.timeLabel.text = HabitsStore.shared.trackDateString(forIndex: i)
+        
+        let selectedHabit = habit
+        let date = HabitsStore.shared.dates[i]
+        if HabitsStore.shared.habit(selectedHabit!, isTrackedIn: date) {
+            cell.checkImage.image = UIImage(systemName: "checkmark")
+            cell.checkImage.tintColor = habit?.color
+        } else {
+            cell.checkImage.image = nil
+        }
+        
         return cell
     }
     

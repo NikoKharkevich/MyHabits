@@ -47,8 +47,8 @@ class HabitDetailsTableViewCell: UITableViewCell {
             checkImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             checkImage.leadingAnchor.constraint(equalTo: timeLabel.trailingAnchor),
             checkImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
-            checkImage.heightAnchor.constraint(equalToConstant: 44),
-            checkImage.widthAnchor.constraint(equalToConstant: 26)
+            checkImage.heightAnchor.constraint(equalToConstant: 40),
+            checkImage.widthAnchor.constraint(equalToConstant: 20)
         ]
         NSLayoutConstraint.activate(cellConstraints)
         

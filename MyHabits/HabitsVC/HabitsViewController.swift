@@ -81,6 +81,7 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.section != 0 else { return }
         let vc = storyboard?.instantiateViewController(identifier: "HabitDetailsVC") as! HabitDetailsViewController
+        vc.habit = (collectionView.cellForItem(at: indexPath) as! HabitCollectionViewCell).habit
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -100,7 +101,6 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = true
             cell.habit = HabitsStore.shared.habits[indexPath.row]
             cell.isChecked = { self.collectionView.reloadData() }
-            
             cell.delegate = self
             
             return cell
