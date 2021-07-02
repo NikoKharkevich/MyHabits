@@ -12,7 +12,6 @@
 		C001BF4C2684EAE9006D1A17 /* myColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4B2684EAE9006D1A17 /* myColors.swift */; };
 		C001BF4E2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */; };
 		C008234B268E4E6400353743 /* TrackingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C008234A268E4E6400353743 /* TrackingAlert.swift */; };
-		C008234F268F157F00353743 /* RefreshHabitDetailsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C008234E268F157F00353743 /* RefreshHabitDetailsTitle.swift */; };
 		C0409E252680A41800FCA6B8 /* myFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0409E242680A41800FCA6B8 /* myFonts.swift */; };
 		C05740A1267A4A060063B25E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A0267A4A060063B25E /* AppDelegate.swift */; };
 		C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05740A2267A4A060063B25E /* SceneDelegate.swift */; };
@@ -35,7 +34,6 @@
 		C001BF4B2684EAE9006D1A17 /* myColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myColors.swift; sourceTree = "<group>"; };
 		C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		C008234A268E4E6400353743 /* TrackingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingAlert.swift; sourceTree = "<group>"; };
-		C008234E268F157F00353743 /* RefreshHabitDetailsTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshHabitDetailsTitle.swift; sourceTree = "<group>"; };
 		C0409E242680A41800FCA6B8 /* myFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFonts.swift; sourceTree = "<group>"; };
 		C057409D267A4A060063B25E /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C05740A0267A4A060063B25E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 				C05740BA267A5E7E0063B25E /* HabitDetailsViewController.swift */,
 				C001BF4D2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift */,
 				C0FCA100268067DB003D576F /* HabitViewController.swift */,
-				C008234E268F157F00353743 /* RefreshHabitDetailsTitle.swift */,
 			);
 			path = HabitVC;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				C0409E252680A41800FCA6B8 /* myFonts.swift in Sources */,
 				C001BF4826848927006D1A17 /* ProgressCollectionViewCell.swift in Sources */,
 				C05740A3267A4A060063B25E /* SceneDelegate.swift in Sources */,
-				C008234F268F157F00353743 /* RefreshHabitDetailsTitle.swift in Sources */,
 				C05740C7267A6D9D0063B25E /* InfoText.swift in Sources */,
 				C001BF4E2684F0AB006D1A17 /* HabitDetailsTableViewCell.swift in Sources */,
 			);

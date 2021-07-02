@@ -2,17 +2,21 @@
 import UIKit
 
 class HabitDetailsViewController: UIViewController {
-    var habit: Habit? 
+    var habit: Habit?
     
     private let tableView = UITableView(frame: .zero, style: .plain)
-    
-    var isNew: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavigationItems()
         NotificationCenter.default.addObserver(self, selector: #selector(popToRoot), name: NSNotification.Name(rawValue: "popToRoot"), object: nil)
+    }
+//    Adding title details in viewWillAppear to get proper name in case of editing habit.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        titleLabel.text = habit?.name
+        titleLabel.textColor = habit?.color
     }
     
     @objc func popToRoot() {
@@ -34,9 +38,6 @@ class HabitDetailsViewController: UIViewController {
         nav?.isHidden = false
 
         navigationItem.titleView = titleLabel
-        titleLabel.text = habit?.name
-        titleLabel.textColor = habit?.color
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(tapEditHabit))
     }
     

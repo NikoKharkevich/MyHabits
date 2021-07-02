@@ -180,16 +180,12 @@ class HabitViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismiss1))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
-    
-    var titleDelegate: RefreshHabitDetailsTitle?
         
     @objc func saveHabit() {
         if let habitUnderEdit = habit {
             habitUnderEdit.name = nameTextField.text ?? "No name"
             habitUnderEdit.color = colorImage.backgroundColor ?? .white
             habitUnderEdit.date = datePicker.date
-            titleDelegate?.refreshTitle(newtitle: habitUnderEdit.name)
-            
         } else {
             let newHabit = Habit(name: nameTextField.text ?? "No name",
                                  date: datePicker.date,

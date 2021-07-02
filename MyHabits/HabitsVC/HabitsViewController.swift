@@ -20,16 +20,16 @@ class HabitsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         collectionView.reloadData()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupNavigationItems() {
         navigationController?.navigationBar.backgroundColor = myLightGray
         navigationController?.navigationBar.tintColor = myPurple
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
+
         navigationController?.navigationBar.isHidden = false
         
-        navigationItem.title =  "Сегодня"
+        navigationItem.title = "Сегодня"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
