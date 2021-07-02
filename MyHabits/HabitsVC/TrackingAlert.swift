@@ -16,5 +16,3 @@ extension HabitsViewController: TrackingAlert {
         present(alertController, animated: true, completion: nil)
     }
 }
-
-

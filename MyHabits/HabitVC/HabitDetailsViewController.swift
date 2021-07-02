@@ -12,6 +12,11 @@ class HabitDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupNavigationItems()
+        NotificationCenter.default.addObserver(self, selector: #selector(popToRoot), name: NSNotification.Name(rawValue: "popToRoot"), object: nil)
+    }
+    
+    @objc func popToRoot() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     var titleLabel: UILabel = {

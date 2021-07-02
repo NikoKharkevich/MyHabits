@@ -9,15 +9,19 @@ class HabitViewController: UIViewController {
     
     var habit: Habit? {
         didSet {
-            if let h = habit {
-                nameTextField.text = h.name
-                colorImage.backgroundColor = h.color
-                datePicker.date = h.date
-                navigationItem.title = "Править"
-            } else {
-                navigationItem.title = "Создать"
-                deleteHabit.isHidden = true
-            }
+            guard let currentHabit = habit else { return }
+            nameTextField.text = currentHabit.name
+            colorImage.backgroundColor = currentHabit.color
+            datePicker.date = currentHabit.date
+        }
+    }
+    
+    func checkTitle() {
+        if habit != nil {
+            navigationItem.title = "Править"
+        } else {
+            navigationItem.title = "Создать"
+            deleteHabit.isHidden = true
         }
     }
     
@@ -126,7 +130,6 @@ class HabitViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    
     private func showCurrentTime() {
         let time = DateFormatter()
         time.dateStyle = .none
@@ -159,6 +162,7 @@ class HabitViewController: UIViewController {
             HabitsStore.shared.habits.removeAll(where: { $0 == habitForRemoval } )
             print("Стало \(HabitsStore.shared.habits.count) привычек")
             self.navigationController?.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "popToRoot"), object: nil)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
@@ -172,17 +176,27 @@ class HabitViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        navigationItem.title = "Создать"
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismiss1))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
     
+    var titleDelegate: RefreshHabitDetailsTitle?
+        
     @objc func saveHabit() {
-        let newHabit = Habit(name: nameTextField.text ?? "No name",
-                             date: datePicker.date,
-                             color: colorImage.backgroundColor ?? .blue)
-        let store = HabitsStore.shared
-        store.habits.append(newHabit)
+        if let habitUnderEdit = habit {
+            habitUnderEdit.name = nameTextField.text ?? "No name"
+            habitUnderEdit.color = colorImage.backgroundColor ?? .white
+            habitUnderEdit.date = datePicker.date
+            titleDelegate?.refreshTitle(newtitle: habitUnderEdit.name)
+            
+        } else {
+            let newHabit = Habit(name: nameTextField.text ?? "No name",
+                                 date: datePicker.date,
+                                 color: colorImage.backgroundColor ?? .blue)
+            let store = HabitsStore.shared
+            store.habits.append(newHabit)
+        }
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
@@ -197,6 +211,7 @@ class HabitViewController: UIViewController {
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
+        checkTitle()
         
         let constraints = [
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

@@ -17,8 +17,6 @@ class HabitsViewController: UIViewController {
         setupCollectionView()
     }
     
-    var checkAdd: Bool?
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         collectionView.reloadData()
