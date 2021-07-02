@@ -15,8 +15,9 @@ class HabitsViewController: UIViewController {
         view.backgroundColor = myLightGray
         setupNavigationItems()
         setupCollectionView()
-        
     }
+    
+    var checkAdd: Bool?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -30,7 +31,7 @@ class HabitsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isHidden = false
         
-        navigationItem.title = "Сегодня"
+        navigationItem.title =  "Сегодня"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
     }
     
@@ -38,6 +39,7 @@ class HabitsViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let controller = sb.instantiateViewController(identifier: "AddNewNavVC") as! UINavigationController
         controller.modalPresentationStyle = .fullScreen
+        
         self.present(controller, animated: true, completion: nil)
         print(type(of: self), #function)
     }
@@ -101,8 +103,7 @@ extension HabitsViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = true
             cell.habit = HabitsStore.shared.habits[indexPath.row]
             cell.isChecked = { self.collectionView.reloadData() }
-            cell.delegate = self
-            
+            cell.trackAlertDelegate = self
             return cell
         }
     }
@@ -154,13 +155,4 @@ extension HabitsViewController {
     }
 }
 
-extension HabitsViewController: HabitCollectionViewCellDelegate {
-    func showAlert() {
-        let alertController = UIAlertController(title: nil, message: "Сегодня привычка уже отмечалась.", preferredStyle: .alert)
-        let notedAction = UIAlertAction(title: "ОК", style: .default) { _ in
-        }
-        alertController.addAction(notedAction)
-        present(alertController, animated: true, completion: nil)
-    }
-}
 

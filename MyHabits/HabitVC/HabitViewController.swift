@@ -1,7 +1,25 @@
 
 import UIKit
 
-class EditHabitViewController: UIViewController {
+protocol SaveHabit {
+    func saveHabit(habit: String)
+}
+
+class HabitViewController: UIViewController {
+    
+    var habit: Habit? {
+        didSet {
+            if let h = habit {
+                nameTextField.text = h.name
+                colorImage.backgroundColor = h.color
+                datePicker.date = h.date
+                navigationItem.title = "Править"
+            } else {
+                navigationItem.title = "Создать"
+                deleteHabit.isHidden = true
+            }
+        }
+    }
     
     private let scrollView = UIScrollView()
     private let containerView = UIView()
@@ -49,7 +67,7 @@ class EditHabitViewController: UIViewController {
             .sink { color in
                 DispatchQueue.main.async {
                     self.colorImage.backgroundColor = color
-                    self.timeText2.textColor = color
+//                    self.timeText2.textColor = color
                 }
             }
         self.present(picker, animated: true, completion: nil)
@@ -80,10 +98,10 @@ class EditHabitViewController: UIViewController {
     }()
     
   @objc func dateToTextField() {
-        let format = DateFormatter()
-        format.dateStyle = .none
-        format.timeStyle = .short
-        timeText2.text = format.string(from: datePicker.date)
+        let time = DateFormatter()
+        time.dateStyle = .none
+        time.timeStyle = .short
+        timeText2.text = time.string(from: datePicker.date)
     }
     
     private let datePicker: UIDatePicker = {
@@ -94,6 +112,27 @@ class EditHabitViewController: UIViewController {
         picker.toAutoLayout()
         return picker
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        self.nameTextField.delegate = self
+        setupNavigationItems()
+        setupViews()
+        showCurrentTime()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    private func showCurrentTime() {
+        let time = DateFormatter()
+        time.dateStyle = .none
+        time.timeStyle = .short
+        timeText2.text = time.string(from: datePicker.date)
+    }
     
     private let deleteHabit: UIButton = {
         let button = UIButton()
@@ -106,35 +145,24 @@ class EditHabitViewController: UIViewController {
     }()
     
     @objc func clickDeleteHabit() {
-        let alertController = UIAlertController(title: "Удалить привычку", message: "Вы хотите удалить привычку\nназвание выбранной привычки", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Удалить привычку",
+                                                message: "Вы хотите удалить привычку\n '\(nameTextField.text ?? "")' ?",
+                                                preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
-            print("Отмена")
+            print("Нажали Отмена")
         }
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [self] _ in
-            print("Удалить")
-            let store = HabitsStore.shared
-            let newHabit = Habit(name: nameTextField.text ?? "No name",
-                                 date: datePicker.date,
-                                 color: colorImage.backgroundColor ?? .blue)
-            store.habits.removeAll(where: { $0 == newHabit } )
-        
+            print("Нажали Удалить")
+            print("Было \(HabitsStore.shared.habits.count) привычек")
+            guard let habitForRemoval = habit else { return }
+            print("Удаляем \(habitForRemoval.name)")
+            HabitsStore.shared.habits.removeAll(where: { $0 == habitForRemoval } )
+            print("Стало \(HabitsStore.shared.habits.count) привычек")
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        self.nameTextField.delegate = self
-        setupNavigationItems()
-        setupViews()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupNavigationItems() {
@@ -144,29 +172,28 @@ class EditHabitViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.prefersLargeTitles = false
         
-        navigationItem.title = "Править"
+        navigationItem.title = "Создать"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(dismiss1))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .plain, target: self, action: #selector(saveHabit))
     }
     
     @objc func saveHabit() {
-        print(type(of: self), #function)
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let controller = sb.instantiateViewController(identifier: "HabitsNavVC") as! UINavigationController
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+        let newHabit = Habit(name: nameTextField.text ?? "No name",
+                             date: datePicker.date,
+                             color: colorImage.backgroundColor ?? .blue)
+        let store = HabitsStore.shared
+        store.habits.append(newHabit)
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     @objc func dismiss1() {
         self.navigationController?.dismiss(animated: true, completion: nil)
-        print(type(of: self), #function)
     }
     
     private func setupViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
-        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage,
-                                  timeLabel, timeText1, timeText2, datePicker, deleteHabit)
+        containerView.addSubviews(nameLabel, nameTextField, colorLabel, colorImage, timeLabel, timeText1, timeText2, datePicker, deleteHabit)
         
         scrollView.toAutoLayout()
         containerView.toAutoLayout()
@@ -185,7 +212,7 @@ class EditHabitViewController: UIViewController {
             
             nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 21),
             nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -65),
             
             nameTextField.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 46),
             nameTextField.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 15),
@@ -251,13 +278,11 @@ class EditHabitViewController: UIViewController {
         scrollView.contentInset.bottom = .zero
         scrollView.verticalScrollIndicatorInsets = .zero
     }
-
 }
 
-extension EditHabitViewController: UITextFieldDelegate {
+extension HabitViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
         return true
     }
 }
-

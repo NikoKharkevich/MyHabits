@@ -1,14 +1,11 @@
 
 import UIKit
 
-protocol HabitCollectionViewCellDelegate {
-    func showAlert()
-}
 class HabitCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "HabitCollectionViewCell"
     
-    var delegate: HabitCollectionViewCellDelegate?
+    var trackAlertDelegate: TrackingAlert?
     var isChecked: (() -> Void)?
     
     var habit: Habit? {
@@ -60,7 +57,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.backgroundColor = UIColor.white
         button.layer.cornerRadius = 19
-        button.layer.borderWidth = 1
+        button.layer.borderWidth = 2
         button.addTarget(self, action: #selector(tapOnColor), for: .touchUpInside)
         button.toAutoLayout()
         return button
@@ -77,7 +74,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
             HabitsStore.shared.track(habit)
             if let trackHabit = isChecked { trackHabit() }
         } else {
-            delegate?.showAlert()
+            trackAlertDelegate?.showAlert()
         }
     
     }

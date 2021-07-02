@@ -5,6 +5,8 @@ class HabitDetailsViewController: UIViewController {
     var habit: Habit? 
     
     private let tableView = UITableView(frame: .zero, style: .plain)
+    
+    var isNew: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,18 +32,20 @@ class HabitDetailsViewController: UIViewController {
         titleLabel.text = habit?.name
         titleLabel.textColor = habit?.color
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(editHabit))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .plain, target: self, action: #selector(tapEditHabit))
     }
     
     @objc func dismiss1() {
         self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    @objc func editHabit() {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let controller = sb.instantiateViewController(identifier: "EditHabitNavVC") as! UINavigationController
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true, completion: nil)
+    @objc func  tapEditHabit() {
+        let vc = HabitViewController()
+        vc.habit = self.habit
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        self.present(navVC, animated: true, completion: nil)
+        
     }
     
     private func setupTableView() {
